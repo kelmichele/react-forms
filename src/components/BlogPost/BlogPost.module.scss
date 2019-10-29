@@ -1,0 +1,14 @@
+@import '../../assets/variables';
+@import '../../assets/mixins.scss';
+@import '../../assets/global';
+
+.BlogHeader{
+  @include sec-default(); padding: 20px 0; margin-bottom: 30px;
+  background-color: $color1; text-align: center;
+  h1{color: white; margin:0;}
+}
+
+.BlogBod{@include sec-default(); margin-top:10px; margin-bottom: 40px;
+  img{margin-bottom: 10px;}
+  .linkBack{font-size:14px; font-weight: bold; color:$color2; text-decoration: none;}
+}

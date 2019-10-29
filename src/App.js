@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import React from 'react';
+import React, {Component} from 'react';
+import { Route, Switch, NavLink } from 'react-router-dom';
+import classes from './App.module.scss';
+import FormComponent from './components/FormComponent/FormComponent';
+import Content from './components/Content/Content';
+import Home from './hoc/Home/Home';
+import Blog from './components/Blog/Blog';
+import BlogPost from './components/BlogPost/BlogPost';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    let routes = (
+      <Switch>
+        <Route exact={true} path="/" component={Home} />
+        <Route path="/blog" exact component={Blog} />
+        <Route path="/form-component" component={FormComponent} />
+        <Route path='/blog/:blogPost' component={BlogPost}/>
+      </Switch>
+    );
+
+    return (
+      <div className={classes.App}>
+        <div className={classes.inside}>
+          <ul className={classes.navUl}>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/blog">Blog</NavLink></li>
+            <li><NavLink to="/form-component">Form</NavLink></li>
+          </ul>
+          <hr/>
+        </div>
+        <Content>
+          {routes}
+        </Content>
+      </div>
+    );
+  }
 }
 
 export default App;

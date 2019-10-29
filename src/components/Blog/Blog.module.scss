@@ -1,0 +1,21 @@
+@import '../../assets/variables';
+@import '../../assets/mixins.scss';
+@import '../../assets/global';
+
+.BlogHeader{
+  @include sec-default(); padding: 20px 0; margin-bottom: 30px;
+  background-color: $color1; text-align: center;
+  h1{color: white; margin:0;}
+}
+
+.BlogBox{
+  width:47%; display:inline-block; vertical-align: top;
+  margin: 20px 0 30px;
+  &:nth-child(2n+2){float:right;}
+  
+  img{margin-bottom:10px;}
+  .blogBodyBox img{display: none;}
+  h3{color:$color1;}
+  p{font-size: 14px;}
+  .linkMore{font-size:14px; font-weight: bold; color:$color2; text-decoration: none;}
+}

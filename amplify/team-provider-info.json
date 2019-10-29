@@ -1,0 +1,14 @@
+{
+    "reactforms": {
+        "awscloudformation": {
+            "AuthRoleName": "react-forms-20191024151232-authRole",
+            "UnauthRoleArn": "arn:aws:iam::002942112590:role/react-forms-20191024151232-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::002942112590:role/react-forms-20191024151232-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "react-forms-20191024151232-deployment",
+            "UnauthRoleName": "react-forms-20191024151232-unauthRole",
+            "StackName": "react-forms-20191024151232",
+            "StackId": "arn:aws:cloudformation:us-east-1:002942112590:stack/react-forms-20191024151232/9cce8f10-f69a-11e9-8c89-0ad4d2e93658"
+        }
+    }
+}

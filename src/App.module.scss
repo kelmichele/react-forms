@@ -1,0 +1,11 @@
+@import './assets/variables';
+@import './assets/global.scss';
+@import './assets/mixins.scss';
+
+.App {padding:40px 0px;}
+
+.App-link {
+  color: #09d3ac;
+}
+
+ul.navUl li{display: inline-block; margin-right:3%;}

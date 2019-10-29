@@ -1,0 +1,47 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.fullSec{@include sec-default();}
+
+.inside, .insideAlt, .medDef, .med2Def, .med3Def, .insideXl, .insideNrw{width: 85%; @include center-block(); 
+  max-width:1600px;
+}
+.insideXl {width: 90%;}
+.insideAlt {width: 80%;}
+.medDef {width:1080px;}
+
+@media (max-width:1100px) {
+  .medDef {width:90%;}
+}
+
+@include bp(xl) {
+  .med2Def{width: 940px;}
+  .med3Def{width: 900px;}
+}
+
+@include bp(br) {
+  .med2Def {width:85%;}
+}
+
+@media screen and (min-width:823px){
+  .insideNrw{width:785px;}
+}
+
+@include bp(tn) {
+  .insideNrw{width:90%}
+}
+
+body {
+  h1, h2, h3, h4, h5, p, li, a, span {color: $black; line-height: 1.5em;
+    &.bmargin0 {margin-bottom: 0;}
+  }
+  span {font-family: inherit; color:inherit;}
+  p,li{font-weight: 400;}
+  p{font-size: 16px;}
+  h1{font-size: 1.8rem;}
+
+  h2{font-size: 1.65rem;}
+  h3{font-size: 1.2rem;}
+}
+
+.imgResponsive {max-width: 100%; height: auto; display:block;}

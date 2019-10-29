@@ -1,0 +1,14 @@
+@import '../../assets/variables';
+@import '../../assets/mixins.scss';
+@import '../../assets/global';
+
+form{padding-top:10px;}
+// label {margin-right:10px;}
+input {
+  padding: 3px 5px;
+  box-sizing: border-box;
+  margin: 0 5px;
+  font-size: 13px;
+}
+
+button {padding:3px 10px; font-size:13px;}
