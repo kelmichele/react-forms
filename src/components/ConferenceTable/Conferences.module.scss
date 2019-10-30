@@ -1,0 +1,7 @@
+@import '../../assets/variables';
+@import '../../assets/global.scss';
+@import '../../assets/mixins.scss';
+
+.ConferenceDetails{@include sec-default(); padding: 0px 0 40px;}
+
+li{margin-bottom:10px;}

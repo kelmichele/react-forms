@@ -45,3 +45,10 @@ body {
 }
 
 .imgResponsive {max-width: 100%; height: auto; display:block;}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.clearfix.btn {@include sec-default(); margin-top:20px;}

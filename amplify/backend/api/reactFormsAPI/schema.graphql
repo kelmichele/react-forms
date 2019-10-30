@@ -1,0 +1,11 @@
+type Conference @model {
+  id: ID!
+  title: String
+  category: String
+  date: String
+  summary: String
+  image: String
+  video: String
+  description: String
+  link: String
+}
