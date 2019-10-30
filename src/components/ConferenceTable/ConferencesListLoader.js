@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphqlOperation } from 'aws-amplify';
 import { Connect } from 'aws-amplify-react';
+import { Link } from 'react-router-dom';
 import ConferencesList from './ConferencesList';
 import classes from './Conferences.module.scss';
 
@@ -56,17 +57,26 @@ class ConferencesListLoader extends Component {
   
   render() {
     return (
-      <Connect
-        query={graphqlOperation(ListConferences)}
-        subscription={graphqlOperation(SubscribeToNewConferences)}
-        onSubscriptionMsg={this.onNewConference}
-      >
-        {({ data, loading }) => {
-          if (loading) { return <div className={classes.medDef}>Loading...</div>; }
-          if (!data.listConferences) return;
-          return <ConferencesList conferences={data.listConferences.items} />;
-        }}
-      </Connect>
+      <div className={classes.ConferenceListPage}>
+        <div className={classes.CLpageHead}>
+          <div className={classes.medDef}>
+            <h1>Conferences</h1>
+            <Link to="/new-conference" className={classes.button}>Add a Conference</Link>
+          </div>
+        </div>
+      
+        <Connect
+          query={graphqlOperation(ListConferences)}
+          subscription={graphqlOperation(SubscribeToNewConferences)}
+          onSubscriptionMsg={this.onNewConference}
+        >
+          {({ data, loading }) => {
+            if (loading) { return <div className={classes.medDef}>Loading...</div>; }
+            if (!data.listConferences) return;
+            return <ConferencesList conferences={data.listConferences.items} />;
+          }}
+        </Connect>
+      </div>
     )
   }
 }

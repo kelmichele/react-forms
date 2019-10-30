@@ -25,7 +25,7 @@ class ConferencesList extends Component {
   conferenceItems() {
     return this.props.conferences.sort(makeComparator('title')).map(conference =>
       <li key={conference.id} className={classes[conference.category]}>
-        <Link to={{pathname: `/conferences/${conference.id}`}}>{conference.title}-- Link</Link>
+        <Link to={{pathname: `/conferences/${conference.id}`}} className={classes.confLink}>{conference.title}</Link>
       </li>
     );
   }
@@ -33,12 +33,6 @@ class ConferencesList extends Component {
   render() {
     return (
       <div className={classes.ConferencesList}>
-        <div className={classes.ConfListHead}>
-          <div className={classes.medDef}>
-            <h1>Conferences</h1>
-          </div>
-        </div>
-
         <div className={classes.ConfListBody}>
           <div className={classes.medDef}>
             <ul className={classes.ConfListings}>
