@@ -71,7 +71,7 @@ class ConferencesListLoader extends Component {
           onSubscriptionMsg={this.onNewConference}
         >
           {({ data, loading }) => {
-            if (loading) { return <div className={classes.medDef}>Loading...</div>; }
+            if (loading) { return <div className={classes.medDef} style={{marginTop:'15px'}}>Loading...</div>; }
             if (!data.listConferences) return;
             return <ConferencesList conferences={data.listConferences.items} />;
           }}

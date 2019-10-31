@@ -2,27 +2,45 @@
 @import '../../assets/global.scss';
 @import '../../assets/mixins.scss';
 
-.ConferenceDetails, .NewConfPage{@include sec-default(); padding: 0px 0 40px;}
-
 li{margin-bottom:10px; list-style-type: none;}
 ul {padding-left:0;}
 .confLink{text-decoration: none; font-weight: bold;}
-
-form{padding-top:10px;}
-.form{margin-bottom: 20px;}
-.formStyle {
-  display: block; width:350px;
-  padding: 3px 5px;
-  box-sizing: border-box;
-  margin-bottom: 15px !important;
-  font-size: 13px;
-}
-textarea{height:100px;}
-
 button {padding:3px 10px; font-size:13px; }
 .button {padding:5px 10px; font-size:13px; border: 1px solid rgba($black,.1); text-decoration: none; margin-bottom: 20px;}
 
-.NewConfPage input {height:30px;}
-.newItem{@include sec-default(); margin-top:30px; border-top: $border; padding-top:15px;
-  .newItemLink{font-size:18px; color: $color1; font-weight: bold;}
+.CLpageHead {@include sec-default(); 
+  h1, .button{display: inline-block;}
+  .button {margin-left: 5%;}
 }
+
+.NewConfPage {@include sec-default(); padding: 0px 0 40px;
+  form{padding-top:10px;}
+  input{margin-left:0;}
+  .form{margin-bottom: 20px;}
+  .formStyle {
+    display: block; width:350px;
+    padding: 3px 5px;
+    box-sizing: border-box;
+    margin-bottom: 15px !important;
+    font-size: 13px;
+  }
+  textarea{height:100px;}
+  input, select {height:30px;}
+  
+  .newItem{@include sec-default(); margin-top:30px; border-top: $border; padding-top:15px;
+    .newItemLink{font-size:18px; color: $color1; font-weight: bold;}
+  }
+}
+
+.ConferenceDetails {@include sec-default();padding: 0px 0 40px;
+  .adminRow{@include sec-default(); margin-top:25px; border-top:$border; padding-top:10px;
+    .editConf, .deleteConf{text-decoration: none; font-weight:bold; font-size:14px;}
+    .editConf{ margin-left: 65%; margin-right:20px;}
+  }
+}
+  .editForm{@include sec-default(); 
+    .eformStyle{@include sec-default(); }
+    input, textarea, select {margin-left:0; width:80%;margin-bottom: 10px;}
+    textarea{height:100px;}
+    input, select {height:30px;}
+  }

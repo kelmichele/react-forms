@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.5.2",
     "@types/react-router-dom": "^5.1.0",
     "aws-amplify": "^1.2.3",
     "aws-amplify-react": "^2.5.3",

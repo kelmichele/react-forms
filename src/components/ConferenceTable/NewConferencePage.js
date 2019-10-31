@@ -39,7 +39,8 @@ class NewConferencePage extends Component {
   }
   createConference = async () => {
     const { title, category, date, summary, image, video, description, link } = this.state
-    if (title === '' || category === '' || date  === '' || summary  === '' || image === '' || video === '' || description === '' || link === '') return
+    // if (title === '' || category === '' || date  === '' || summary  === '' || image === '' || video === '' || description === '' || link === '') return;
+    if (title === '' || category === '' || date  === '' || summary  === '' ) return;
     try {
       const conference = {title, category, date, summary, image, video, description, link};
       const conferences = [...this.state.conferences, conference];
@@ -66,23 +67,24 @@ class NewConferencePage extends Component {
               value={this.state.title}
             />
             
-            {/* <select name='category' className={classes.formStyle}>
-              <option selected value=""></option>
+            <select name='category' value={this.state.category} onChange={this.onChange} className={classes.formStyle}>
+              <option value="">Select a Category</option>
               <option value="Keynote">Keynote</option>
               <option value="Fireside">Fireside</option>
               <option value="Panel">Panel</option>
               <option value="Other">Other</option>
-            </select> */}
+            </select>
             
-            <input
+            {/* <input
               className={classes.formStyle}
               name='category'
               placeholder='Conference category'
               onChange={this.onChange}
               value={this.state.category}
-            />
+            /> */}
+            
             <input
-            type="date"
+              type="date"
               className={classes.formStyle}
               name='date'
               placeholder='Conference date'

@@ -1,0 +1,15 @@
+mutation DeleteConference {
+  deleteConference(input: {
+    id:"18a0f61a-b339-40a7-8f32-6198db951556"
+  }) {
+    id
+    title
+    category
+    date
+    summary
+    image
+    video
+    description
+    link
+  }
+}
