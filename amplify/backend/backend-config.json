@@ -13,5 +13,17 @@
 				"securityType": "API_KEY"
 			}
 		}
+	},
+	"auth": {
+		"cognitoce468063": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"storage": {
+		"reactformsS3storage": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }

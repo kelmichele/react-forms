@@ -4,47 +4,8 @@ import { Connect } from 'aws-amplify-react';
 import { Link } from 'react-router-dom';
 import ConferencesList from './ConferencesList';
 import classes from './Conferences.module.scss';
-
-
-const ListConferences = `query ListConferences(
-  $filter: ModelConferenceFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listConferences(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      title
-      category
-      date
-      summary
-      image
-      video
-      description
-      link
-    }
-    nextToken
-  }
-}
-`;
-
-
-const SubscribeToNewConferences = `
-  subscription OnCreateConference {
-    onCreateConference {
-      id
-      title
-      category
-      date
-      summary
-      image
-      video
-      description
-      link
-    }
-  }
-`;
-
+import { listConferences } from '../../graphql/queries';
+import { onCreateConference } from '../../graphql/subscriptions';
 
 class ConferencesListLoader extends Component {
   onNewConference = (prevQuery, newData) => {
@@ -66,8 +27,8 @@ class ConferencesListLoader extends Component {
         </div>
       
         <Connect
-          query={graphqlOperation(ListConferences)}
-          subscription={graphqlOperation(SubscribeToNewConferences)}
+          query={graphqlOperation(listConferences)}
+          subscription={graphqlOperation(onCreateConference)}
           onSubscriptionMsg={this.onNewConference}
         >
           {({ data, loading }) => {
