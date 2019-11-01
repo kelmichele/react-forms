@@ -6,7 +6,6 @@ import classes from './App.module.scss';
 import ConferencesListLoader from "./components/ConferenceTable/ConferencesListLoader";
 import ConferenceDetailsLoader from "./components/ConferenceTable/ConferenceDetailsLoader";
 import NewConferencePage from "./components/ConferenceTable/NewConferencePage";
-import EditConference from "./components/ConferenceTable/EditConference";
 
 import FormComponent from './components/FormComponent/FormComponent';
 import Content from './components/Content/Content';
@@ -23,7 +22,6 @@ class App extends Component {
         <Route path="/form-component" component={FormComponent} />
         <Route path='/blog/:blogPost' component={BlogPost}/>
         <Route path="/new-conference" component={NewConferencePage} />
-        <Route path="/edit-conference" component={EditConference} />
         <Route path="/conferences" exact component={ConferencesListLoader} />
         <Route
           path='/conferences/:conferenceId'

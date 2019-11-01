@@ -133,6 +133,7 @@ class ConferenceDetails extends Component {
                     placeholder={this.props.conference.summary}
                     onChange={this.handleChange('conferenceSummary')}
                   />
+                  {/* <input type="file" /> */}                  
                   <input
                     className={classes.formStyle}
                     name='image'
