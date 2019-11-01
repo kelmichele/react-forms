@@ -44,3 +44,10 @@ button {padding:3px 10px; font-size:13px; }
     textarea{height:100px;}
     input, select {height:30px;}
   }
+
+
+.BodyGrid{@include sec-default();
+  .FormSide, .ListSide {display:inline-block; width:45%; margin-left: 4%; vertical-align: top;}
+  h3{padding-bottom: 5px; border-bottom:1px solid rgba($black,.1);}
+  
+}

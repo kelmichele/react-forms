@@ -6,7 +6,7 @@ import { createConference } from '../../graphql/mutations';
 import { onCreateConference } from '../../graphql/subscriptions';
 import { Link } from 'react-router-dom';
 
-// summary image video link
+// after conference is created, it lists the new name and clears on refresh...no success message or other indication
 
 class NewConferencePage extends Component {
   state = { title: '', category: '', date: '', summary: '', image: '', video: '', description: '', link: '', conferences: [] }

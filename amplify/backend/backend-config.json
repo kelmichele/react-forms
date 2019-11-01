@@ -14,12 +14,7 @@
 			}
 		}
 	},
-	"auth": {
-		"cognitoce468063": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	},
+	"auth": {},
 	"storage": {
 		"reactformsS3storage": {
 			"service": "S3",
