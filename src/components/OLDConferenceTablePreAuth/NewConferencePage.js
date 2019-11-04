@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 // after conference is created, it lists the new name and clears on refresh...no success message or other indication
 
 class NewConferencePage extends Component {
-  state = { title: '', category: '', date: '', image: '', description: '', link: '', conferences: [] }
+  state = { title: '', category: '', date: '', summary: '', image: '', video: '', description: '', link: '', conferences: [] }
 
   async componentDidMount() {
     this.subscription = API.graphql(
@@ -20,7 +20,7 @@ class NewConferencePage extends Component {
         const conferences = [
           ...this.state.conferences.filter(c => {
             return (
-              c.title !== conference.title && c.category !== conference.category && c.date !== conference.date && c.image !== conference.image && c.description !== conference.description && c.link !== conference.link
+              c.title !== conference.title && c.category !== conference.category && c.date !== conference.date && c.summary !== conference.summary && c.image !== conference.image && c.video !== conference.video && c.description !== conference.description && c.link !== conference.link
             )
           }),
           conference
@@ -38,13 +38,13 @@ class NewConferencePage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   createConference = async () => {
-    const { title, category, date, image, description, link } = this.state
+    const { title, category, date, summary, image, video, description, link } = this.state
     // if (title === '' || category === '' || date  === '' || summary  === '' || image === '' || video === '' || description === '' || link === '') return;
-    if (title === '' || category === '' || date  === '') return;
+    if (title === '' || category === '' || date  === '' || summary  === '' ) return;
     try {
-      const conference = {title, category, date, image, description, link};
+      const conference = {title, category, date, summary, image, video, description, link};
       const conferences = [...this.state.conferences, conference];
-      this.setState({ conferences, title: '', category: '', date: '', image: '', description: '', link: '' });
+      this.setState({ conferences, title: '', category: '', date: '', summary: '', image: '', video: '', description: '', link: '' });
       await API.graphql(graphqlOperation(createConference, {input: conference}));
       console.log('Conference successfully created!');
     } catch (err) {
@@ -83,27 +83,12 @@ class NewConferencePage extends Component {
               onChange={this.onChange}
               value={this.state.date}
             />
-            {/* <textarea
+            <textarea
               className={classes.formStyle}
               name='summary'
               placeholder='Conference summary'
               onChange={this.onChange}
               value={this.state.summary}
-            /> */}
-            
-            {/* <input
-              className={classes.formStyle}
-              name='video'
-              placeholder='Conference video'
-              onChange={this.onChange}
-              value={this.state.video}
-            /> */}
-            <textarea
-              className={classes.formStyle}
-              name='description'
-              placeholder='Conference description'
-              onChange={this.onChange}
-              value={this.state.description}
             />
             <input
               className={classes.formStyle}
@@ -111,6 +96,20 @@ class NewConferencePage extends Component {
               placeholder='Conference image'
               onChange={this.onChange}
               value={this.state.image}
+            />
+            <input
+              className={classes.formStyle}
+              name='video'
+              placeholder='Conference video'
+              onChange={this.onChange}
+              value={this.state.video}
+            />
+            <textarea
+              className={classes.formStyle}
+              name='description'
+              placeholder='Conference description'
+              onChange={this.onChange}
+              value={this.state.description}
             />
             <input
               className={classes.formStyle}

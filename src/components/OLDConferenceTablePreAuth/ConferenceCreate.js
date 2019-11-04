@@ -52,13 +52,13 @@ class ConferenceCreate extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   createConference = async () => {
-    const { title, category, date, image, description, link } = this.state;
+    const { title, category, date, summary, image, video, description, link } = this.state;
     // if (title === '' || category === '' || date  === '' || summary  === '' || image === '' || video === '' || description === '' || link === '') return;
-    if (title === '' || category === '' || date  === '' ) return;
+    if (title === '' || category === '' || date  === '' || summary  === '' ) return;
     try {
-      const conference = {title, category, date, image, description, link};
+      const conference = {title, category, date, summary, image, video, description, link};
       const conferences = [...this.state.conferences, conference];
-      this.setState({ conferences, title: '', category: '', date: '', image: '', description: '', link: '' });
+      this.setState({ conferences, title: '', category: '', date: '', summary: '', image: '', video: '', description: '', link: '' });
       await API.graphql(graphqlOperation(createConference, {input: conference}));
       console.log('Conference successfully created!');
     } catch (err) {
@@ -98,13 +98,13 @@ class ConferenceCreate extends Component {
                   onChange={this.onChange}
                   value={this.state.date}
                 />
-                {/* <textarea
+                <textarea
                   className={classes.formStyle}
                   name='summary'
                   placeholder='Conference summary'
                   onChange={this.onChange}
                   value={this.state.summary}
-                /> */}
+                />
                 <input
                   className={classes.formStyle}
                   name='image'
@@ -112,13 +112,13 @@ class ConferenceCreate extends Component {
                   onChange={this.onChange}
                   value={this.state.image}
                 />
-                {/* <input
+                <input
                   className={classes.formStyle}
                   name='video'
                   placeholder='Conference video'
                   onChange={this.onChange}
                   value={this.state.video}
-                /> */}
+                />
                 <textarea
                   className={classes.formStyle}
                   name='description'

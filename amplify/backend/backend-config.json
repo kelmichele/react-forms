@@ -15,10 +15,5 @@
 		}
 	},
 	"auth": {},
-	"storage": {
-		"reactformsS3storage": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+	"storage": {}
 }

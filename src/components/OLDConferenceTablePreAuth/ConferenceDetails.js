@@ -82,9 +82,9 @@ class ConferenceDetails extends Component {
           
           <p><b>Category:</b> {this.props.conference.category}</p>
           <p><b>Date:</b> {this.props.conference.date}</p>
-          {/* <p><b>Summary:</b> {this.props.conference.summary}</p> */}
+          <p><b>Summary:</b> {this.props.conference.summary}</p>
           <p><b>Image:</b> {this.props.conference.image}</p>
-          {/* <p><b>Video:</b> {this.props.conference.video}</p> */}
+          <p><b>Video:</b> {this.props.conference.video}</p>
           <p><b>Description:</b> {this.props.conference.description}</p>
           <a href={this.props.conference.link} target="_blank" rel="noopener noreferrer">Learn More</a>
           
@@ -125,14 +125,14 @@ class ConferenceDetails extends Component {
                     placeholder={this.props.conference.date}
                     onChange={this.handleChange('conferenceDate')}
                   />
-                  {/* <textarea
+                  <textarea
                     className={classes.formStyle}
                     name='summary'
                     id='conferenceSummary'
                     defaultValue={this.props.conference.summary}
                     placeholder={this.props.conference.summary}
                     onChange={this.handleChange('conferenceSummary')}
-                  /> */}
+                  />
                   {/* <input type="file" /> */}                  
                   <input
                     className={classes.formStyle}
@@ -142,14 +142,14 @@ class ConferenceDetails extends Component {
                     placeholder={this.props.conference.image}
                     onChange={this.handleChange('conferenceImage')}
                   />
-                  {/* <input
+                  <input
                     className={classes.formStyle}
                     name='video'
                     id='conferenceVideo'
                     defaultValue={this.props.conference.video}
                     placeholder={this.props.conference.video}
                     onChange={this.handleChange('conferenceVideo')}
-                  /> */}
+                  />
                   <textarea
                     className={classes.formStyle}
                     name='description'
