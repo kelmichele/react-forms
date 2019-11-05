@@ -8,4 +8,8 @@
   color: #09d3ac;
 }
 
-ul.navUl li{display: inline-block; margin-right:3%;}
+ul.navUl li{display: inline-block; margin-right:3%; 
+  a{text-decoration: none;}
+  &:hover a{text-decoration: underline;}
+  &.LoginLink{float:right;}
+}

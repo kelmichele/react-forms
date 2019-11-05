@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import { Route, Switch, NavLink } from 'react-router-dom';
 import classes from './App.module.scss';
 
-// import SignIn from "./SignIn";
+import SignIn from "./SignIn";
 import ConferencesListLoader from "./components/ConferenceTable/ConferencesListLoader";
 import ConferenceDetailsLoader from "./components/ConferenceTable/ConferenceDetailsLoader";
 import NewConferencePage from "./components/ConferenceTable/NewConferencePage";
@@ -20,7 +20,7 @@ class App extends Component {
     let routes = (
       <Switch>
         <Route exact={true} path="/" component={Home} />
-        {/* <Route path="/sign-in" exact component={SignIn} /> */}
+        <Route path="/sign-in" exact component={SignIn} />
         <Route path="/blog" exact component={Blog} />
         <Route path="/form-component" component={FormComponent} />
         <Route path='/blog/:blogPost' component={BlogPost}/>
@@ -42,6 +42,7 @@ class App extends Component {
             <li><NavLink to="/blog">Blog</NavLink></li>
             <li><NavLink to="/form-component">Form</NavLink></li>
             <li><NavLink to="/conferences">Conferences</NavLink></li>
+            <li className={classes.LoginLink}><NavLink to="/sign-in">Sign In</NavLink></li>
           </ul>
           <hr/>
         </div>

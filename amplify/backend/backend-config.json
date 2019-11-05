@@ -20,5 +20,10 @@
 			"providerPlugin": "awscloudformation"
 		}
 	},
-	"storage": {}
+	"storage": {
+		"reactFormsUploads": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	}
 }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
+import { Connect } from 'aws-amplify-react';
 import classes from './Conferences.module.scss';
-// import { listConferences } from '../../graphql/queries';
+import { listConferences } from '../../graphql/queries';
 import { createConference } from '../../graphql/mutations';
 import { onCreateConference } from '../../graphql/subscriptions';
 import { Link } from 'react-router-dom';
+import ConferencesList from './ConferencesList';
 
 // after conference is created, it lists the new name and clears on refresh...no success message or other indication
 
@@ -56,79 +58,100 @@ class NewConferencePage extends Component {
     return (
       <div className={classes.NewConfPage}>
         <div className={classes.medDef}>
-          <h1>Add a Conference</h1>
-          
-          <div className={classes.form}>
-            <input
-              className={classes.formStyle}
-              name='title'
-              placeholder='Conference title'
-              onChange={this.onChange}
-              value={this.state.title}
-            />
-            
-            <select name='category' value={this.state.category} onChange={this.onChange} className={classes.formStyle}>
-              <option value="">Select a Category</option>
-              <option value="Keynote">Keynote</option>
-              <option value="Fireside">Fireside</option>
-              <option value="Panel">Panel</option>
-              <option value="Other">Other</option>
-            </select>
-            
-            <input
-              type="date"
-              className={classes.formStyle}
-              name='date'
-              placeholder='Conference date'
-              onChange={this.onChange}
-              value={this.state.date}
-            />
-            {/* <textarea
-              className={classes.formStyle}
-              name='summary'
-              placeholder='Conference summary'
-              onChange={this.onChange}
-              value={this.state.summary}
-            /> */}
-            
-            {/* <input
-              className={classes.formStyle}
-              name='video'
-              placeholder='Conference video'
-              onChange={this.onChange}
-              value={this.state.video}
-            /> */}
-            <textarea
-              className={classes.formStyle}
-              name='description'
-              placeholder='Conference description'
-              onChange={this.onChange}
-              value={this.state.description}
-            />
-            <input
-              className={classes.formStyle}
-              name='image'
-              placeholder='Conference image'
-              onChange={this.onChange}
-              value={this.state.image}
-            />
-            <input
-              className={classes.formStyle}
-              name='link'
-              placeholder='Conference link'
-              onChange={this.onChange}
-              value={this.state.link}
-            />
-            <button
-              onClick={this.createConference}
-            >Create Conference</button>
-          </div>
-      
-          {this.state.conferences.map((conf, i) => (
-            <li key={conf.title} className={classes.newItem}>
-              <Link to={{pathname: `/conferences/${conf.id}`}} className={classes.newItemLink}>{conf.title}</Link>
-            </li>
-          ))}              
+          <div className={classes.BodyGrid}>
+            <div className={classes.FormSide}>
+              <h3>Add a Conference</h3>
+              
+              <div className={classes.form}>
+                <input
+                  className={classes.formStyle}
+                  name='title'
+                  placeholder='Conference title'
+                  onChange={this.onChange}
+                  value={this.state.title}
+                />
+                
+                <select name='category' value={this.state.category} onChange={this.onChange} className={classes.formStyle}>
+                  <option value="">Select a Category</option>
+                  <option value="Keynote">Keynote</option>
+                  <option value="Fireside">Fireside</option>
+                  <option value="Panel">Panel</option>
+                  <option value="Other">Other</option>
+                </select>
+                
+                <input
+                  type="date"
+                  className={classes.formStyle}
+                  name='date'
+                  placeholder='Conference date'
+                  onChange={this.onChange}
+                  value={this.state.date}
+                />
+                {/* <textarea
+                  className={classes.formStyle}
+                  name='summary'
+                  placeholder='Conference summary'
+                  onChange={this.onChange}
+                  value={this.state.summary}
+                /> */}
+                
+                {/* <input
+                  className={classes.formStyle}
+                  name='video'
+                  placeholder='Conference video'
+                  onChange={this.onChange}
+                  value={this.state.video}
+                /> */}
+                <textarea
+                  className={classes.formStyle}
+                  name='description'
+                  placeholder='Conference description'
+                  onChange={this.onChange}
+                  value={this.state.description}
+                />
+                <input
+                  className={classes.formStyle}
+                  name='image'
+                  placeholder='Conference image'
+                  onChange={this.onChange}
+                  value={this.state.image}
+                />
+                <input
+                  className={classes.formStyle}
+                  name='link'
+                  placeholder='Conference link'
+                  onChange={this.onChange}
+                  value={this.state.link}
+                />
+                <button
+                  onClick={this.createConference}
+                >Create Conference</button>
+              </div>
+            </div>
+              
+            <div className={classes.ListSide}>
+              <h3>All Conferences</h3>
+              <ul>
+                {this.state.conferences.map((conf, i) => (
+                  <li key={conf.title} className={classes.newItem}>
+                    <Link to={{pathname: `/conferences/${conf.id}`}} className={classes.newItemLink}>{conf.title}</Link>
+                  </li>
+                ))}   
+                
+                <Connect
+                  query={graphqlOperation(listConferences)}
+                  subscription={graphqlOperation(onCreateConference)}
+                  // onSubscriptionMsg={this.onNewConference}
+                >
+                  {({ data, loading }) => {
+                    if (loading) { return <div className={classes.medDef} style={{marginTop:'15px'}}>Loading...</div>; }
+                    if (!data.listConferences) return;
+                    return <ConferencesList conferences={data.listConferences.items} />;
+                  }}
+                </Connect>
+              </ul>
+            </div>  
+          </div>         
         </div>
       </div>
     )
