@@ -1,0 +1,9 @@
+@import '../../assets/variables';
+@import '../../assets/global.scss';
+@import '../../assets/mixins.scss';
+
+.album {
+  input{margin-top:20px; padding:10px; border:1px solid rgba($black,.1);}
+  img{width:45%; display: inline-block; }
+  .delete{margin-left:12%;}
+}
