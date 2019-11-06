@@ -13,12 +13,13 @@ button {padding:3px 10px; font-size:13px; }
   .button {margin-left: 5%;}
 }
 
-.NewConfPage {@include sec-default(); padding: 0px 0 40px;
+.NewConfPage {@include sec-default(); padding: 0px 0 40px; overflow-x: hidden; 
   form{padding-top:10px;}
   input{margin-left:0;}
   .form{margin-bottom: 20px;}
   .formStyle {
-    display: block; width:350px;
+    display: block; 
+    width:350px;
     padding: 3px 5px;
     box-sizing: border-box;
     margin-bottom: 15px !important;

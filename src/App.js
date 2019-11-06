@@ -5,7 +5,7 @@ import classes from './App.module.scss';
 
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
-import { withAuthenticator, S3Album } from 'aws-amplify-react';
+// import { withAuthenticator, Authenticator } from 'aws-amplify-react';
 
 import SignIn from "./SignIn";
 import ConferencesListLoader from "./components/ConferenceTable/ConferencesListLoader";
@@ -51,10 +51,10 @@ class App extends Component {
             <li><NavLink to="/conferences">Conferences</NavLink></li>
             <li><NavLink to="/album">Album</NavLink></li>
             <li><a href="http://react-forms-20191029132121-hostingbucket-reactforms.s3-website-us-east-1.amazonaws.com" target="_blank" rel="noopener noreferrer">Live App</a></li>
-            {/* <li className={classes.LoginLink}>
-              <NavLink to="/sign-in">Sign In</NavLink>
-              <Authenticator />    
-            </li> */}
+            <li className={classes.LoginLink}>
+              <NavLink to="/sign-in">Sign In/Out</NavLink>
+              {/* <Authenticator />     */}
+            </li>
           </ul>
           <hr/>
         </div>
@@ -73,4 +73,5 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App, true);
+export default App;
+// export default withAuthenticator(App, true);
