@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { S3Image } from 'aws-amplify-react';
+// import { withAuthenticator } from 'aws-amplify-react';
 import classes from './Conferences.module.scss';
 // import DeleteConferencePage from './DeleteConferencePage';
 import { API, graphqlOperation } from "aws-amplify";
@@ -78,12 +80,22 @@ class ConferenceDetails extends Component {
       <div className={classes.ConferenceDetails}>
         <div className={classes.med2Def}>
           <h3>{this.props.conference.title}</h3>
-          <small>{this.props.conference.id}</small>
+          {/* <small>id: {this.props.conference.id}</small><div className={classes.clearfix}/><br/> */}
           
-          {/* commented these out to try to delete test entries with only image/title */}
+          {this.props.conference.image ? 
+            <div className={classes.confImage}><S3Image imgKey={this.props.conference.image.key} level="private" className={classes.KPs3} /></div>
+            : ''}
+            
+          {/* <img
+            src={this.props.conference.image.key}
+            className={classes.imgResponsive}
+            style={{ width: '300' }}
+            alt="alternative"
+          /> */}
+          
           {this.props.conference.category ? <p><b>Category:</b> {this.props.conference.category}</p> : ''}
           {this.props.conference.date ? <p><b>Date:</b> {this.props.conference.date}</p> : ''}
-          {/* <p><b>Image:</b> {this.props.conference.image}</p> */}
+          {this.props.conference.image.key ? <p><b>Image Key:</b> {this.props.conference.image.key}</p> : '' }
           {this.props.conference.description ? <p><b>Description:</b> {this.props.conference.description}</p> : ''}
           {this.props.conference.link ? <a href={this.props.conference.link} target="_blank" rel="noopener noreferrer">Learn More</a> : ''}
           
@@ -188,4 +200,5 @@ class ConferenceDetails extends Component {
     )
   }
 }
+// export default withAuthenticator(ConferenceDetails, { includeGreetings: true })
 export default ConferenceDetails;

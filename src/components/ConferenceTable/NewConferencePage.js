@@ -39,12 +39,11 @@ function NewConferencePage() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [imageUrl, updateImageUrl] = useState('')
   const catList = [
-  { id: 10976, name: 'Keynote' },
-  { id: 20976, name: 'Fireside' },
-  { id: 30976, name: 'Panel' },
-  { id: 40976, name: 'Other' }
-];
-  
+    { id: 10976, name: 'Keynote' },
+    { id: 20976, name: 'Fireside' },
+    { id: 30976, name: 'Panel' },
+    { id: 40976, name: 'Other' }
+  ];
 
   function handleChange(event) {
     const { target: { value, files } } = event
@@ -73,7 +72,7 @@ function NewConferencePage() {
 
   async function createConference(event) {
     event.preventDefault()
-    if (!title) return alert('please complete the form')
+    if (!title) return alert('Please complete the form.')
     if (file && title) {
         const { name: fileName, type: mimeType } = file  
         const key = `${fileName}`
@@ -95,7 +94,7 @@ function NewConferencePage() {
           updateDate('')
           updateDescription('')
           updateLink('')
-          console.log('successfully stored data!')
+          console.log('Successfully added conference!')
         } catch (err) {
           console.log('error: ', err)
         }
@@ -169,21 +168,11 @@ function NewConferencePage() {
             <ul>
               {state.conferences.map((conf, i) => {
                 return(
-                // <li key={i} className={classes.newItem}>
-                <li key={i} className={classes.confLink}>
-                  {/* <img
-                    src={imageUrl}
-                    style={{ width: '300' }}
-                    alt="alternative"
-                  /> */}
-                  <Link to={{pathname: `/conferences/${conf.id}`}} className={classes.newItemLink}>{conf.title}</Link>
-                  <div className={classes.clearfix} />
-                  {conf.category ? <small>{conf.category}<br /></small> : ''}
-                  {conf.date ? <small>{conf.date}<br /></small> : ''}
-                  {conf.description ? <small>{conf.description}<br /></small> : ''}
-                  {conf.link ? <small>{conf.link}<br /></small> : ''}
-                </li>
-              )})}  
+                  <li key={i} className={classes.confLink}>
+                    <Link to={{pathname: `/conferences/${conf.id}`}} className={classes.newItemLink}>{conf.title}</Link>
+                  </li>
+                )
+              })}  
             </ul>
           </div>
         </div> 

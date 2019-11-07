@@ -36,10 +36,13 @@ button {padding:3px 10px; font-size:13px; }
     input, textarea, select {width:310px; display:block; margin:15px 0; padding: 3px 5px; font-size: 13px;}
     .inputFile{padding:15px 10px; border: 1px solid rgba($black,.1); height:auto;}
     button{width:200px; }
+    a{text-decoration: none; }
   }
 }
 
 .ConferenceDetails {@include sec-default();padding: 0px 0 40px;
+  .confImage img{max-width:100%;}
+  
   .adminRow{@include sec-default(); margin-top:25px; border-top:$border; padding-top:10px;
     .editConf, .deleteConf{text-decoration: none; font-weight:bold; font-size:14px;}
     .editConf{ margin-left: 65%; margin-right:20px;}
