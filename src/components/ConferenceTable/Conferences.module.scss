@@ -31,6 +31,12 @@ button {padding:3px 10px; font-size:13px; }
   .newItem{@include sec-default(); margin-top:30px; border-top: $border; padding-top:15px;
     .newItemLink{font-size:18px; color: $color1; font-weight: bold;}
   }
+  
+  &.newVersion{
+    input, textarea, select {width:310px; display:block; margin:15px 0; padding: 3px 5px; font-size: 13px;}
+    .inputFile{padding:15px 10px; border: 1px solid rgba($black,.1); height:auto;}
+    button{width:200px; }
+  }
 }
 
 .ConferenceDetails {@include sec-default();padding: 0px 0 40px;
@@ -39,12 +45,14 @@ button {padding:3px 10px; font-size:13px; }
     .editConf{ margin-left: 65%; margin-right:20px;}
   }
 }
-  .editForm{@include sec-default(); 
-    .eformStyle{@include sec-default(); }
-    input, textarea, select {margin-left:0; width:80%;margin-bottom: 10px;}
-    textarea{height:100px;}
-    input, select {height:30px;}
-  }
+
+.editForm{@include sec-default(); 
+  label, .eformStyle{@include sec-default(); }
+  label{font-size:13px;}
+  input, textarea, select {width:80%;margin: 3px 0 15px;font-size:13px;}
+  textarea{height:100px;}
+  input, select {height:30px;}
+}
 
 
 .BodyGrid{@include sec-default();

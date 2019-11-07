@@ -8,7 +8,11 @@ export const createConference = `mutation CreateConference($input: CreateConfere
     category
     date
     summary
-    image
+    image {
+      bucket
+      region
+      key
+    }
     video
     description
     link
@@ -22,7 +26,11 @@ export const updateConference = `mutation UpdateConference($input: UpdateConfere
     category
     date
     summary
-    image
+    image {
+      bucket
+      region
+      key
+    }
     video
     description
     link
@@ -36,7 +44,11 @@ export const deleteConference = `mutation DeleteConference($input: DeleteConfere
     category
     date
     summary
-    image
+    image {
+      bucket
+      region
+      key
+    }
     video
     description
     link

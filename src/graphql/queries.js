@@ -8,7 +8,11 @@ export const getConference = `query GetConference($id: ID!) {
     category
     date
     summary
-    image
+    image {
+      bucket
+      region
+      key
+    }
     video
     description
     link
@@ -27,7 +31,11 @@ export const listConferences = `query ListConferences(
       category
       date
       summary
-      image
+      image {
+        bucket
+        region
+        key
+      }
       video
       description
       link

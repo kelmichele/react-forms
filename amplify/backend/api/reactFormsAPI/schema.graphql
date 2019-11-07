@@ -4,8 +4,14 @@ type Conference @model {
   category: String
   date: String
   summary: String
-  image: String
+  image: S3Object
   video: String
   description: String
   link: String
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
 }

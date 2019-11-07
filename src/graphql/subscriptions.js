@@ -8,7 +8,11 @@ export const onCreateConference = `subscription OnCreateConference {
     category
     date
     summary
-    image
+    image {
+      bucket
+      region
+      key
+    }
     video
     description
     link
@@ -22,7 +26,11 @@ export const onUpdateConference = `subscription OnUpdateConference {
     category
     date
     summary
-    image
+    image {
+      bucket
+      region
+      key
+    }
     video
     description
     link
@@ -36,7 +44,11 @@ export const onDeleteConference = `subscription OnDeleteConference {
     category
     date
     summary
-    image
+    image {
+      bucket
+      region
+      key
+    }
     video
     description
     link
