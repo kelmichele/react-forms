@@ -80,13 +80,12 @@ class ConferenceDetails extends Component {
           <h3>{this.props.conference.title}</h3>
           <small>{this.props.conference.id}</small>
           
-          <p><b>Category:</b> {this.props.conference.category}</p>
-          <p><b>Date:</b> {this.props.conference.date}</p>
-          {/* <p><b>Summary:</b> {this.props.conference.summary}</p> */}
-          <p><b>Image:</b> {this.props.conference.image}</p>
-          {/* <p><b>Video:</b> {this.props.conference.video}</p> */}
-          <p><b>Description:</b> {this.props.conference.description}</p>
-          <a href={this.props.conference.link} target="_blank" rel="noopener noreferrer">Learn More</a>
+          {/* commented these out to try to delete test entries with only image/title */}
+          {this.props.conference.category ? <p><b>Category:</b> {this.props.conference.category}</p> : ''}
+          {this.props.conference.date ? <p><b>Date:</b> {this.props.conference.date}</p> : ''}
+          {/* <p><b>Image:</b> {this.props.conference.image}</p> */}
+          {this.props.conference.description ? <p><b>Description:</b> {this.props.conference.description}</p> : ''}
+          {this.props.conference.link ? <a href={this.props.conference.link} target="_blank" rel="noopener noreferrer">Learn More</a> : ''}
           
           <div className={classes.adminRow}>
             <button className={classes.editConf} aria-label="Edit" onClick={this.handleClickOpenEdit}>Edit Conference</button>
@@ -99,6 +98,7 @@ class ConferenceDetails extends Component {
               
               <DialogContent>
                 <div className={classes.editForm}>
+                  <label>Title:</label><br />
                   <input
                     className={classes.formStyle}
                     name='title'
@@ -108,6 +108,7 @@ class ConferenceDetails extends Component {
                     onChange={this.handleChange('conferenceTitle')}
                   />
                   
+                  <label>Category:</label><br />
                   <select id="conferenceCategory" name='category' defaultValue={this.props.conference.category} placeholder={this.props.conference.category} onChange={this.handleChange('conferenceCategory')} className={classes.formStyle}>
                     <option value="">Select a Category</option>
                     <option value="Keynote">Keynote</option>
@@ -116,6 +117,7 @@ class ConferenceDetails extends Component {
                     <option value="Other">Other</option>
                   </select>
                   
+                  <label>Date:</label><br />
                   <input
                     type="date"
                     className={classes.formStyle}
@@ -124,16 +126,9 @@ class ConferenceDetails extends Component {
                     defaultValue={this.props.conference.date}
                     placeholder={this.props.conference.date}
                     onChange={this.handleChange('conferenceDate')}
-                  />
-                  {/* <textarea
-                    className={classes.formStyle}
-                    name='summary'
-                    id='conferenceSummary'
-                    defaultValue={this.props.conference.summary}
-                    placeholder={this.props.conference.summary}
-                    onChange={this.handleChange('conferenceSummary')}
-                  /> */}
-                  {/* <input type="file" /> */}                  
+                  />                
+                  {/* 
+                  <label>Image:</label><br />
                   <input
                     className={classes.formStyle}
                     name='image'
@@ -141,15 +136,9 @@ class ConferenceDetails extends Component {
                     defaultValue={this.props.conference.image}
                     placeholder={this.props.conference.image}
                     onChange={this.handleChange('conferenceImage')}
-                  />
-                  {/* <input
-                    className={classes.formStyle}
-                    name='video'
-                    id='conferenceVideo'
-                    defaultValue={this.props.conference.video}
-                    placeholder={this.props.conference.video}
-                    onChange={this.handleChange('conferenceVideo')}
                   /> */}
+
+                  <label>Description:</label><br />
                   <textarea
                     className={classes.formStyle}
                     name='description'
@@ -158,6 +147,8 @@ class ConferenceDetails extends Component {
                     placeholder={this.props.conference.description}
                     onChange={this.handleChange('conferenceDescription')}
                   />
+                  
+                  <label>Link:</label><br />
                   <input
                     className={classes.formStyle}
                     name='link'

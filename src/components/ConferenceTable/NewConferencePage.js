@@ -38,6 +38,13 @@ function NewConferencePage() {
   const [link, updateLink] = useState('')
   const [state, dispatch] = useReducer(reducer, initialState)
   const [imageUrl, updateImageUrl] = useState('')
+  const catList = [
+  { id: 10976, name: 'Keynote' },
+  { id: 20976, name: 'Fireside' },
+  { id: 30976, name: 'Panel' },
+  { id: 40976, name: 'Other' }
+];
+  
 
   function handleChange(event) {
     const { target: { value, files } } = event
@@ -76,7 +83,7 @@ function NewConferencePage() {
             key,
             region,
         }
-        const inputData = { title, description, image: fileForUpload}
+        const inputData = { title, category, date, description, link, image: fileForUpload}
 
         try {
           await Storage.put(key, file, {
@@ -84,8 +91,10 @@ function NewConferencePage() {
           })
           await API.graphql(graphqlOperation(CreateConference, { input: inputData }))
           updateTitle('')
-          // KP?
+          updateCategory('')
+          updateDate('')
           updateDescription('')
+          updateLink('')
           console.log('successfully stored data!')
         } catch (err) {
           console.log('error: ', err)
@@ -118,10 +127,11 @@ function NewConferencePage() {
             
             <select value={category} onChange={e => updateCategory(e.target.value)}>
               <option value="">Select a Category</option>
-              <option value="Keynote">Keynote</option>
-              <option value="Fireside">Fireside</option>
-              <option value="Panel">Panel</option>
-              <option value="Other">Other</option>
+               {catList.map(cat => (
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
+                </option>
+              ))}
             </select>
             
             <input
