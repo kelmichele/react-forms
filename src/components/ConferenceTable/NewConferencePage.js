@@ -37,7 +37,7 @@ function NewConferencePage() {
   const [description, updateDescription] = useState('')
   const [link, updateLink] = useState('')
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [imageUrl, updateImageUrl] = useState('')
+  // const [ imageUrl, updateImageUrl] = useState('')
   const catList = [
     { id: 10976, name: 'Keynote' },
     { id: 20976, name: 'Fireside' },
@@ -51,14 +51,14 @@ function NewConferencePage() {
     updateFile(image || value)
   }
   
-  async function fetchImage(key) {
-    try {
-      const imageData = await Storage.get(key)
-      updateImageUrl(imageData)
-    } catch(err) {
-      console.log('error: ', err)
-    }
-  }
+  // async function fetchImage(key) {
+  //   try {
+  //     const imageData = await Storage.get(key)
+  //     updateImageUrl(imageData)
+  //   } catch(err) {
+  //     console.log('error: ', err)
+  //   }
+  // }
 
   async function fetchConferences() {
     try {

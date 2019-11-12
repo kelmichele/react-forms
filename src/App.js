@@ -11,7 +11,6 @@ import SignIn from "./SignIn";
 import ConferencesListLoader from "./components/ConferenceTable/ConferencesListLoader";
 import ConferenceDetailsLoader from "./components/ConferenceTable/ConferenceDetailsLoader";
 import NewConferencePage from "./components/ConferenceTable/NewConferencePage";
-// import ConferenceCreate from "./components/ConferenceTable/ConferenceCreate";
 import FormComponent from './components/FormComponent/FormComponent';
 import Content from './components/Content/Content';
 import Home from './hoc/Home/Home';
@@ -31,7 +30,6 @@ class App extends Component {
         <Route path='/blog/:blogPost' component={BlogPost}/>
         <Route path='/album' component={Album}/>
         {/* <Route path="/new-conference" component={NewConferencePage} /> */}
-        {/* <Route path="/create-conference" component={ConferenceCreate} /> */}
         <Route path="/conferences" exact component={NewConferencePage} />
         <Route path="/all-conferences" exact component={ConferencesListLoader} />
         <Route

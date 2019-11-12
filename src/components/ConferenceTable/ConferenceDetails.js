@@ -1,28 +1,32 @@
+// 11-8 DETAILS PAGE -- BEFORE EDITS
 import React, { Component } from 'react';
-import { S3Image } from 'aws-amplify-react';
-// import { withAuthenticator } from 'aws-amplify-react';
+import { S3Image, withAuthenticator } from 'aws-amplify-react';
 import classes from './Conferences.module.scss';
-// import DeleteConferencePage from './DeleteConferencePage';
-import { API, graphqlOperation } from "aws-amplify";
+import Amplify, { API, graphqlOperation, Storage } from "aws-amplify";
+import awsconfig from '../../aws-exports';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-// import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import * as mutations from '../../graphql/mutations';
+Amplify.configure(awsconfig);
+// Storage.configure({ level: 'private' });
+const {
+  aws_user_files_s3_bucket_region: region,
+  aws_user_files_s3_bucket: bucket
+} = awsconfig
 
 class ConferenceDetails extends Component {
   // everything before render was added for delete/edit
   state = {
     openDel: false,
     openEdit: false,
+    openPhotoEdit: false,
     conferenceTitle: '',
     conferenceCategory: '',
     conferenceDate: '',
-    conferenceSummary: '',
     conferenceImage: '',
-    conferenceVideo: '',
     conferenceDescription: ''
   };
   
@@ -44,33 +48,82 @@ class ConferenceDetails extends Component {
   
   // added this and edited solo
   handleClickOpenEdit = () => {
-    console.log("Show Edit for " + this.props.conference.title);
+    // console.log("Show Edit for " + this.props.conference.title);
     this.setState({ openEdit: true });
   };
   handleCloseEdit = () => {
     this.setState({ openEdit: false });
   };
   
+  handleClickOpenPhotoEdit = () => {
+    this.setState({ openPhotoEdit: true });
+  };
+  handleClosePhotoEdit = () => {
+    this.setState({ openPhotoEdit: false });
+  };
+  
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
     });
+    // console.log(name + ": " + event.target.value)
   };
   
+  // KPKP
+    consoleState = () => {
+      console.log("Image Key: " + this.props.conference.image.key + '. confImage:' + this.state.conferenceImage + ".");
+    };
+    
+    replacePhoto = name => event => {
+      const file = event.target.files[0];
+      const fileName = file.name
+      
+      this.setState({ 
+        [name]: fileName
+      })
+      console.log(event.target.name + ": " + fileName + ". confImage.state: " + this.state.conferenceImage)
+    }
+      
+    handlePhotoSubmit = (event) => {
+      this.setState({ openEdit: false });
+      var files = document.getElementById("conferenceImage").files;
+      const fileName = this.state.conferenceImage
+      const file = files[0];
+      const key = `${fileName}`
+      const fileForUpload = {
+        bucket,
+        region,
+        key
+      }
+      const imageData = {
+        id: this.props.conference.id,
+        image: fileForUpload
+      }
+
+      // try {
+        Storage.put(fileName, file, {
+          contentType: 'image/jpeg'
+        })
+        API.graphql(graphqlOperation(mutations.updateConference, { input: imageData }))
+        console.log("state: " + this.state.conferenceImage + ". props: " + this.props.conference.image.key);
+      // } catch (err) {
+      //   console.log('error: ', err)
+      // }      
+    }
+  // KPKP
+
   handleSubmit = (e) => {
-    this.setState({ openEdit: false });
+    this.setState({ openEdit: false });    
     var conferenceInfo = {
       id: this.props.conference.id,
       title: this.state.conferenceTitle || this.props.conference.title,
       category: this.state.conferenceCategory || this.props.conference.category,
       date: this.state.conferenceDate || this.props.conference.date,
-      summary: this.state.conferenceSummary || this.props.conference.summary,
       image: this.state.conferenceImage || this.props.conference.image,
-      video: this.state.conferenceVideo || this.props.conference.video,
       description: this.state.conferenceDescription || this.props.conference.description
     }
+    
     API.graphql(graphqlOperation(mutations.updateConference, {input: conferenceInfo}));
-    // window.location.reload();
     alert('Conference updated. Refresh page to see the changes.');
   }
   
@@ -79,26 +132,19 @@ class ConferenceDetails extends Component {
     return (
       <div className={classes.ConferenceDetails}>
         <div className={classes.med2Def}>
-          <h3>{this.props.conference.title}</h3>
-          {/* <small>id: {this.props.conference.id}</small><div className={classes.clearfix}/><br/> */}
-          
-          {this.props.conference.image ? 
-            <div className={classes.confImage}><S3Image imgKey={this.props.conference.image.key} level="private" className={classes.KPs3} /></div>
-            : ''}
+          <div className={classes.confCallout}>
+            <h3>{this.props.conference.title}</h3>            
+            {this.props.conference.image.key ? 
+              <div className={classes.confImage}><S3Image imgKey={this.props.conference.image.key} level="private" /></div>
+              : ''}
             
-          {/* <img
-            src={this.props.conference.image.key}
-            className={classes.imgResponsive}
-            style={{ width: '300' }}
-            alt="alternative"
-          /> */}
-          
-          {this.props.conference.category ? <p><b>Category:</b> {this.props.conference.category}</p> : ''}
-          {this.props.conference.date ? <p><b>Date:</b> {this.props.conference.date}</p> : ''}
-          {this.props.conference.image.key ? <p><b>Image Key:</b> {this.props.conference.image.key}</p> : '' }
-          {this.props.conference.description ? <p><b>Description:</b> {this.props.conference.description}</p> : ''}
-          {this.props.conference.link ? <a href={this.props.conference.link} target="_blank" rel="noopener noreferrer">Learn More</a> : ''}
-          
+            {this.props.conference.category ? <p><b>Category:</b> {this.props.conference.category}</p> : ''}
+            {this.props.conference.date ? <p><b>Date:</b> {this.props.conference.date}</p> : ''}
+            {this.props.conference.image ? <p><b>Image Key:</b> {this.props.conference.image.key}</p> : '' }
+            {this.props.conference.description ? <p><b>Description:</b> {this.props.conference.description}</p> : ''}
+            {this.props.conference.link ? <a href={this.props.conference.link} target="_blank" rel="noopener noreferrer">Learn More</a> : ''}
+          </div>
+
           <div className={classes.adminRow}>
             <button className={classes.editConf} aria-label="Edit" onClick={this.handleClickOpenEdit}>Edit Conference</button>
             <Dialog
@@ -139,16 +185,6 @@ class ConferenceDetails extends Component {
                     placeholder={this.props.conference.date}
                     onChange={this.handleChange('conferenceDate')}
                   />                
-                  {/* 
-                  <label>Image:</label><br />
-                  <input
-                    className={classes.formStyle}
-                    name='image'
-                    id='conferenceImage'
-                    defaultValue={this.props.conference.image}
-                    placeholder={this.props.conference.image}
-                    onChange={this.handleChange('conferenceImage')}
-                  /> */}
 
                   <label>Description:</label><br />
                   <textarea
@@ -177,8 +213,35 @@ class ConferenceDetails extends Component {
                 <Button onClick={this.handleCloseEdit} color="primary">Cancel</Button>
               </DialogActions>
             </Dialog>
+                 
           
-          
+            <button className={classes.editImg} onClick={this.handleClickOpenPhotoEdit}>Change Image</button>
+            <Dialog
+              open={this.state.openPhotoEdit}
+              onClose={this.handleClosePhotoEdit}
+              aria-labelledby="edit-photo-title"
+            > 
+              <DialogTitle id="edit-photo-title">Select a new photo</DialogTitle>
+              <DialogContent>
+                <div className={classes.editForm}>
+                  {/* <label>Image:</label><br /> */}
+                  <input
+                    type="file"
+                    name="image"
+                    id='conferenceImage'
+                    onChange={this.replacePhoto('conferenceImage')}
+                  />
+                  {/* <button onClick={this.handlePhotoSubmit}>Submit</button> */}
+                </div>
+              </DialogContent>
+              
+              <DialogActions>
+                <Button onClick={this.handlePhotoSubmit} color="primary">Submit</Button>
+                <Button onClick={this.handleClosePhotoEdit} color="primary">Cancel</Button>
+              </DialogActions>
+            </Dialog>
+
+                    
             <button className={classes.deleteConf} onClick={this.handleClickOpenDel}>Delete Conference</button>
             <Dialog
               open={this.state.openDel}
@@ -191,14 +254,11 @@ class ConferenceDetails extends Component {
                 <Button onClick={this.handleDelete} color="primary">Delete</Button>
               </DialogActions>
             </Dialog>
-          
-          
-          
           </div>
         </div>
       </div>
     )
   }
 }
-// export default withAuthenticator(ConferenceDetails, { includeGreetings: true })
-export default ConferenceDetails;
+export default withAuthenticator(ConferenceDetails)
+// export default ConferenceDetails;
