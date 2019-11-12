@@ -13,3 +13,8 @@ ul.navUl li{display: inline-block; margin-right:3%;
   &:hover a{text-decoration: underline;}
   &.LoginLink{float:right; margin-top:-25px; margin-bottom: 0;}
 }
+
+
+.homePage{
+  img{max-width: 100%;}
+}

@@ -235,5 +235,5 @@ class PuppyDetails extends Component {
     )
   }
 }
-export default withAuthenticator(PuppyDetails)
+export default withAuthenticator(PuppyDetails);
 // export default PuppyDetails;

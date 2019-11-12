@@ -162,4 +162,5 @@ function NewPuppyPage() {
     </div>
   )
 }
+// export default NewPuppyPage
 export default withAuthenticator(NewPuppyPage, { includeGreetings: true })

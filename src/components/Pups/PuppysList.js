@@ -17,7 +17,7 @@ function makeComparator(key, order = 'asc') {
     return order === 'desc' ? (comparison * -1) : comparison
   };
 }
-
+// /public/images/*"
 
 class PuppysList extends Component {
   puppyItems() {

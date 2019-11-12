@@ -6,7 +6,7 @@ import { S3Album } from 'aws-amplify-react';
 Amplify.configure(awsconfig);
 
 const home = (props) => (
-  <div className="home">
+  <div className={classes.homePage}>
     <div className={classes.medDef}>
       <h1>Welcome</h1>
       <S3Album level="public" path='' identityId='' picker='' />
