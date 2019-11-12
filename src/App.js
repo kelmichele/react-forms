@@ -11,6 +11,9 @@ import SignIn from "./SignIn";
 import ConferencesListLoader from "./components/ConferenceTable/ConferencesListLoader";
 import ConferenceDetailsLoader from "./components/ConferenceTable/ConferenceDetailsLoader";
 import NewConferencePage from "./components/ConferenceTable/NewConferencePage";
+import PuppysListLoader from "./components/Pups/PuppysListLoader";
+import PuppyDetailsLoader from "./components/Pups/PuppyDetailsLoader";
+import NewPuppyPage from "./components/Pups/NewPuppyPage";
 import FormComponent from './components/FormComponent/FormComponent';
 import Content from './components/Content/Content';
 import Home from './hoc/Home/Home';
@@ -36,6 +39,13 @@ class App extends Component {
           path='/conferences/:conferenceId'
           render={props => <ConferenceDetailsLoader id={props.match.params.conferenceId} />}
         />
+        
+        <Route path="/new-puppy" exact component={NewPuppyPage} />
+        <Route path="/pups" exact component={PuppysListLoader} />
+        <Route
+          path='/pups/:puppyId'
+          render={props => <PuppyDetailsLoader id={props.match.params.puppyId} />}
+        />
       </Switch>
     );
     
@@ -45,8 +55,9 @@ class App extends Component {
           <ul className={classes.navUl}>
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/blog">Blog</NavLink></li>
-            <li><NavLink to="/form-component">Form</NavLink></li>
-            <li><NavLink to="/conferences">Conferences</NavLink></li>
+            {/* <li><NavLink to="/form-component">Form</NavLink></li> */}
+            <li><NavLink to="/pups">Puppies</NavLink></li>
+            {/* <li><NavLink to="/conferences">Conferences</NavLink></li> */}
             <li><NavLink to="/album">Album</NavLink></li>
             <li><a href="http://react-forms-20191029132121-hostingbucket-reactforms.s3-website-us-east-1.amazonaws.com" target="_blank" rel="noopener noreferrer">Live App</a></li>
             <li className={classes.LoginLink}>

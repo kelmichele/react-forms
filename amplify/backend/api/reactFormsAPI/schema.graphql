@@ -15,3 +15,12 @@ type S3Object {
   region: String!
   key: String!
 }
+
+type Puppy @model {
+  id: ID!
+  name: String
+  image: S3Object
+  description: String
+  fact: String
+  video: String
+}

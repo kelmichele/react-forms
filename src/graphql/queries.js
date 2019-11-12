@@ -44,3 +44,40 @@ export const listConferences = `query ListConferences(
   }
 }
 `;
+export const getPuppy = `query GetPuppy($id: ID!) {
+  getPuppy(id: $id) {
+    id
+    name
+    image {
+      bucket
+      region
+      key
+    }
+    description
+    fact
+    video
+  }
+}
+`;
+export const listPuppys = `query ListPuppys(
+  $filter: ModelPuppyFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPuppys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      image {
+        bucket
+        region
+        key
+      }
+      description
+      fact
+      video
+    }
+    nextToken
+  }
+}
+`;

@@ -1,0 +1,85 @@
+@import '../../assets/variables';
+@import '../../assets/global.scss';
+@import '../../assets/mixins.scss';
+
+li{margin-bottom:10px; list-style-type: none;}
+ul {padding-left:0;}
+.pupLink{text-decoration: none; font-weight: bold;}
+button {padding:3px 10px; font-size:13px; }
+.button {padding:5px 10px; font-size:13px; border: 1px solid rgba($black,.1); text-decoration: none; margin-bottom: 20px;}
+
+.CLpageHead {@include sec-default(); 
+  h1, .button{display: inline-block;}
+  .button {margin-left: 5%;}
+}
+
+.NewPupPage {@include sec-default(); padding: 0px 0 40px; overflow-x: hidden; 
+  form{padding-top:10px;}
+  input{margin-left:0;}
+  .form{margin-bottom: 20px;}
+  .formStyle {
+    display: block; 
+    width:350px;
+    padding: 3px 5px;
+    box-sizing: border-box;
+    margin-bottom: 15px !important;
+    font-size: 13px;
+  }
+  textarea{height:100px;}
+  input, select {height:30px;}
+  
+  .newItem{@include sec-default(); margin-top:30px; border-top: $border; padding-top:15px;
+    .newItemLink{font-size:18px; color: $color1; font-weight: bold;}
+  }
+}
+
+.PuppyDetails {@include sec-default();padding: 30px 0 40px; text-align: center;
+  h1{font-size:30px; margin-bottom: 0px;}
+  h2{margin:0 0 25px; font-size:23px; font-weight:normal;}
+  h3{font-weight: normal;}
+  .pupImage img{
+    max-width:100%; 
+    // height:350px; width:auto;
+  }
+  
+  .adminRow{@include sec-default(); margin-top:25px; border-top:$border; padding-top:10px;
+    .editPup, .deletePup, .editImg{text-decoration: none; font-weight:bold; font-size:14px; margin-left:20px;}
+    .editPup{ 
+      // margin-left: 65%; margin-right:20px;
+      margin-left: 50%; }
+  }
+}
+
+.NewPupPage, .PuppyDetails {
+  &.newVersion{
+    input, textarea, select {width:310px; display:block; margin:15px 0; padding: 3px 5px; font-size: 13px;}
+    .inputFile{padding:15px 10px; border: 1px solid rgba($black,.1); height:auto;}
+    button{width:200px; }
+    a{text-decoration: none; }
+  }
+}
+
+.editForm{@include sec-default(); 
+  label, .eformStyle{@include sec-default(); }
+  label{font-size:13px;}
+  input, textarea, select {width:80%;margin: 3px 0 15px;font-size:13px;}
+  textarea{height:100px;}
+  input, select {height:30px;}
+}
+
+.BodyGrid{@include sec-default();
+  .FormSide, .ListSide {display:inline-block; width:45%; margin-left: 4%; vertical-align: top;}
+  h3{padding-bottom: 5px; border-bottom:1px solid rgba($black,.1);}
+  
+}
+
+.PuppyListPage {
+  .CLpageHead {margin-bottom:50px; padding-bottom:0px; border-bottom: 1px solid rgba($black,.1)}
+  li {width:45%; display:inline-block; text-align:center;
+    img{max-width:100%;}
+    h4{margin-top:5px; color:$xy;}
+    
+    &:nth-child(2n+2){float: right;}
+  }
+
+}

@@ -55,3 +55,48 @@ export const deleteConference = `mutation DeleteConference($input: DeleteConfere
   }
 }
 `;
+export const createPuppy = `mutation CreatePuppy($input: CreatePuppyInput!) {
+  createPuppy(input: $input) {
+    id
+    name
+    image {
+      bucket
+      region
+      key
+    }
+    description
+    fact
+    video
+  }
+}
+`;
+export const updatePuppy = `mutation UpdatePuppy($input: UpdatePuppyInput!) {
+  updatePuppy(input: $input) {
+    id
+    name
+    image {
+      bucket
+      region
+      key
+    }
+    description
+    fact
+    video
+  }
+}
+`;
+export const deletePuppy = `mutation DeletePuppy($input: DeletePuppyInput!) {
+  deletePuppy(input: $input) {
+    id
+    name
+    image {
+      bucket
+      region
+      key
+    }
+    description
+    fact
+    video
+  }
+}
+`;

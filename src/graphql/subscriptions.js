@@ -55,3 +55,48 @@ export const onDeleteConference = `subscription OnDeleteConference {
   }
 }
 `;
+export const onCreatePuppy = `subscription OnCreatePuppy {
+  onCreatePuppy {
+    id
+    name
+    image {
+      bucket
+      region
+      key
+    }
+    description
+    fact
+    video
+  }
+}
+`;
+export const onUpdatePuppy = `subscription OnUpdatePuppy {
+  onUpdatePuppy {
+    id
+    name
+    image {
+      bucket
+      region
+      key
+    }
+    description
+    fact
+    video
+  }
+}
+`;
+export const onDeletePuppy = `subscription OnDeletePuppy {
+  onDeletePuppy {
+    id
+    name
+    image {
+      bucket
+      region
+      key
+    }
+    description
+    fact
+    video
+  }
+}
+`;
