@@ -81,5 +81,8 @@ button {padding:3px 10px; font-size:13px; }
     
     &:nth-child(2n+2){float: right;}
   }
-
+  
+  @include bp(mb) {
+    li, li:nth-child(2n+2) {width:75%; @include center-block(); margin-bottom:35px;}
+  }
 }

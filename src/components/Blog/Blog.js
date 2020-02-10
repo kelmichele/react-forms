@@ -3,14 +3,17 @@ import * as contentful from 'contentful';
 import BlogItem from './BlogItem';
 import classes from './Blog.module.scss';
 
+const CONTENTAK = process.env.REACT_APP_API_CONTENTAK;
+const CONTENT_SPACE = process.env.REACT_APP_API_CONTENT_SPACE;
+
 class Blog extends React.Component {  
   state = {
     posts: []
   }
     
   client = contentful.createClient({
-    space: 'f64kp6d7911l',
-    accessToken: 'fHUHKNntsNOU2GrDtmFM_QzwNJ0F11eIcWFgZVePdy4'
+    space: CONTENT_SPACE,
+    accessToken: CONTENTAK
   })
     
   componentDidMount() {
